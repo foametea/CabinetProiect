@@ -1,0 +1,52 @@
+﻿@page
+@model CabinetVeterinar.Pages.Cabinets.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Cabinet</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cabinet.CabinetName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cabinet.CabinetName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cabinet.Animal.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cabinet.Animal.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cabinet.Animal.Species)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cabinet.Animal.Species)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cabinet.Animal.Age)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cabinet.Animal.Age)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cabinet.Prescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cabinet.Prescription)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Cabinet.CabinetId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

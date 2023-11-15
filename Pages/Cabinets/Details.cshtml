@@ -1,0 +1,63 @@
+﻿@page
+@model CabinetVeterinar.Pages.Cabinets.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Cabinet</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cabinet.CabinetName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cabinet.CabinetName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cabinet.Animal.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cabinet.Animal.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cabinet.Animal.Species)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cabinet.Animal.Species)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cabinet.Animal.Age)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cabinet.Animal.Age)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cabinet.Prescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cabinet.Prescription)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cabinet.Vet.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cabinet.Vet.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Emergency Types
+        </dt>
+        <dd class="col-sm-10">
+            @foreach (var emergencyType in Model.Cabinet.CabinetTypes)
+            {
+                <div>
+                    @emergencyType.EmergencyType.TypeOfUrgency
+                </div>
+            }
+        </dd>
+    </dl>
+</div>
+

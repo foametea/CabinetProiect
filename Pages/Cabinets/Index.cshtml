@@ -1,0 +1,73 @@
+﻿@page "/"
+@model CabinetVeterinar.Pages.Cabinets.IndexModel
+@using CabinetVeterinar.Models
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cabinet[0].CabinetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cabinet[0].Prescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cabinet[0].Animal.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cabinet[0].Animal.Species)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CabinetD.Cabinets.First().CabinetTypes.First().EmergencyType.TypeOfUrgency)
+            </th>
+            <th>
+                Name Vet
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CabinetD.Cabinets)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CabinetName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Animal.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Animal.Species)
+                </td>
+                <td>
+                    @foreach (var cabinetType in item.CabinetTypes)
+                    {
+                        @cabinetType.EmergencyType.TypeOfUrgency <br />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vet.Name)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CabinetId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.CabinetId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.CabinetId">Delete</a>
+                    <form method="post" asp-page="./Index" asp-page-handler="ShowVetAnimals" asp-route-id="@item.Vet.Id">
+                        <button type="submit">Look what dogs a vet has</button>
+                    </form>
+                </td>
+            </tr>
+        }

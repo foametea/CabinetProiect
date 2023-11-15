@@ -1,0 +1,76 @@
+﻿@page
+@model CabinetVeterinar.Pages.Cabinets.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Cabinet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Cabinet.CabinetName" class="control-label"></label>
+                <input asp-for="Cabinet.CabinetName" class="form-control" />
+                <span asp-validation-for="Cabinet.CabinetName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cabinet.Prescription" class="control-label"></label>
+                <input asp-for="Cabinet.Prescription" class="form-control" />
+                <span asp-validation-for="Cabinet.Prescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cabinet.AnimalID" class="control-label">Animal Name</label>
+                <select asp-for="Cabinet.AnimalID" class="form-control" asp-items="ViewBag.AnimalID">
+                </select>
+                <span asp-validation-for="Cabinet.AnimalID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cabinet.VetID" class="control-label">Vet Name</label>
+                <select asp-for="Cabinet.VetID" class="form-control" asp-items="ViewBag.VetID">
+                </select>
+                <span asp-validation-for="Cabinet.VetID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+    <div class="table">
+        <table>
+            <tr>
+                @{
+                    int cnt = 0;
+                    foreach (var emergencyType in Model.BooleanForEmergencyList)
+                    {
+                        if (cnt++ % 3 == 0)
+                        {
+                            @:</tr><tr>
+                        }
+                        @:<td>
+                            <input type="checkbox"
+                                   name="selectedEmergencyTypes"
+                                   value="@emergencyType.EmergencyID"
+                                   @(Html.Raw(emergencyType.Assigned ? "checked=\"checked\"" : "")) />
+                            @emergencyType.EmergencyID @: @emergencyType.Name
+                        @:</td>
+                    }
+                @:</tr>
+            }
+        </table>
+    </div>
+</div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
